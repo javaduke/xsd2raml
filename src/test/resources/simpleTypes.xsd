@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xsd2raml.mulesoft.com/"
+           elementFormDefault="qualified" targetNamespace="http://xsd2raml.mulesoft.com/"
+           version="1.1">
+
+    <xs:annotation>
+        <xs:appinfo>
+            <b:schemaInfo subdocument_break="yes" Split_Without_Sibling_Data="Yes" version="1.0" document_type="837" standards_version="00501" root_reference="EDISchemaNode" displayroot_reference="EDISchemaNode" X12ConditionDesignator_Check="Yes" xmlns:b="http://schemas.microsoft.com/BizTalk/2003" />
+        </xs:appinfo>
+    </xs:annotation>
+
+    <xs:annotation>
+        <xs:documentation>Simple Types Example</xs:documentation>
+    </xs:annotation>
+
+    <xs:complexType name="CustomerAndRoleType">
+        <xs:all>
+            <xs:element name="CrmGuid" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="CustomerRole" type="tns:StringEnumType" minOccurs="0" maxOccurs="1"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:simpleType name="DoubleNumericType">
+		<xs:restriction base="xs:double">
+			<xs:minInclusive value="34.2"/>
+			<xs:maxInclusive value="100.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="StringEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Colt"/>
+			<xs:enumeration value="Browning"/>
+			<xs:enumeration value="Remington"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+
+    
+
+</xs:schema>

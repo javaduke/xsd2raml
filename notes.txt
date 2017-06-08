@@ -1,0 +1,5 @@
+http://www.programcreek.com/java-api-examples/index.php?source_dir=xsd2cnd-master/src/main/java/org/apache/jackrabbit/xsd2cnd/SchemaConverter.java
+
+http://www.programcreek.com/java-api-examples/index.php?source_dir=DataHubSystem-master/core/src/main/java/fr/gael/dhus/util/SentinelXsdDumpMetadata.java
+
+http://www.programcreek.com/java-api-examples/index.php?source_dir=topic-modeling-master/data/xerces/xerces-2_11_0/src/org/apache/xerces/impl/xs/traversers/XSDComplexTypeTraverser.java
