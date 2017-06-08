@@ -190,7 +190,7 @@ public class Xsd2Raml {
                         }
 
 
-                        System.out.println(">>> ELEMENT  : " + eDec.getName() + ": " + eDec.getTypeDefinition().getName());
+                        //System.out.println(">>> ELEMENT  : " + eDec.getName() + ": " + eDec.getTypeDefinition().getName());
 
 //                        System.out.println(">>> COMPOSITOR : " + mg.getCompositor());
                         break;
