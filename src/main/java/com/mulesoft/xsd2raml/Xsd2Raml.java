@@ -151,8 +151,11 @@ public class Xsd2Raml {
         return ramlTypeBuffer.toString();
     }
 
-
     private String particleToRaml(XSParticle particle, int indent) {
+        return particleToRaml(particle, indent, false);
+    }
+
+    private String particleToRaml(XSParticle particle, int indent, boolean optional) {
         StringBuffer ramlBuffer = new StringBuffer();
         if (particle != null) {
             XSTerm term = particle.getTerm();
@@ -167,7 +170,7 @@ public class Xsd2Raml {
                         XSObjectList list = mg.getParticles();
                         for (int i = 0; i < list.getLength(); i++) {
                             XSParticle pp = (XSParticle) list.item(i);
-                            ramlBuffer.append(particleToRaml(pp, indent + 1));
+                            ramlBuffer.append(particleToRaml(pp, indent + 1, isOptional));
                         }
 
                         break;
@@ -176,6 +179,8 @@ public class Xsd2Raml {
 
                         if (eDec.getName() != null)
                             ramlBuffer.append(getIndent(indent)).append(eDec.getName()).append(":\n");
+
+                        ramlBuffer.append(getIndent(indent + 1)).append("required: ").append(optional || (particle.getMinOccurs() > 0)).append("\n");
 
                         XSTypeDefinition eDecType = eDec.getTypeDefinition();
 
