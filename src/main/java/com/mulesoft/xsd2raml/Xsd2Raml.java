@@ -7,6 +7,16 @@ import com.sun.org.apache.xerces.internal.impl.xs.SchemaGrammar;
 import com.sun.org.apache.xerces.internal.impl.xs.XSAnnotationImpl;
 import com.sun.org.apache.xerces.internal.impl.xs.XSComplexTypeDecl;
 import com.sun.org.apache.xerces.internal.xs.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathFactory;
 
 public class Xsd2Raml {
 
@@ -124,7 +134,32 @@ public class Xsd2Raml {
 
     private String doConvertComplexType(XSComplexTypeDecl complexType, int indent) {
 
-        System.out.println(">>> COMPLEX TYPE NAME : " + complexType.getName());
+        StringBuffer descriptionBuffer = new StringBuffer();
+
+        XSObjectList annotations = complexType.getAnnotations();
+        for (Object nextA : annotations) {
+            XSAnnotation nextAnnotation = (XSAnnotation)nextA;
+
+            try {
+                DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+                Document doc = docBuilder.newDocument();
+                nextAnnotation.writeAnnotation(doc, XSAnnotation.W3C_DOM_DOCUMENT);
+
+                XPath xPath = XPathFactory.newInstance().newXPath();
+                NodeList nl = (NodeList) xPath.evaluate("//*[local-name()='documentation']", doc.getDocumentElement(), XPathConstants.NODESET);
+
+                for (int i = 0; i < nl.getLength(); i++) {
+                    Node nextNode = nl.item(i);
+                    if (nextNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element e = (Element) nextNode;
+                        descriptionBuffer.append(e.getTextContent()).append(" ");
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         StringBuffer ramlTypeBuffer = new StringBuffer();
         if (complexType.getName() != null)
@@ -140,6 +175,11 @@ public class Xsd2Raml {
             ramlTypeBuffer.append(complexType.getBaseType().getName());
 
         ramlTypeBuffer.append("\n");
+
+        String description = descriptionBuffer.toString();
+        if (!"".equals(description))
+            ramlTypeBuffer.append(getIndent(indent + 2)).append("description: ").append(description).append("\n");
+
         ramlTypeBuffer.append(getIndent(indent + 2)).append("properties:").append("\n");
 
         XSParticle particle = complexType.getParticle();
@@ -165,7 +205,7 @@ public class Xsd2Raml {
                     case XSConstants.MODEL_GROUP: //this particle is a model group (one of <xs:sequence>, <xs:choice> or <xs:all>)
                         XSModelGroup mg = (XSModelGroup) term;
                         boolean isOptional = (mg.getCompositor() == XSModelGroup.COMPOSITOR_CHOICE);
-                        System.out.println(">>> COMPOSITOR : " + mg.getCompositor());
+                        //System.out.println(">>> COMPOSITOR : " + mg.getCompositor());
 
                         XSObjectList list = mg.getParticles();
                         for (int i = 0; i < list.getLength(); i++) {
@@ -180,6 +220,10 @@ public class Xsd2Raml {
                         if (eDec.getName() != null)
                             ramlBuffer.append(getIndent(indent)).append(eDec.getName()).append(":\n");
 
+                        XSObjectList annotations = eDec.getAnnotations();
+                        for (Object nextA : annotations) {
+                            XSAnnotation nextAnnotation = (XSAnnotation)nextA;
+                        }
                         ramlBuffer.append(getIndent(indent + 1)).append("required: ").append(optional || (particle.getMinOccurs() > 0)).append("\n");
 
                         XSTypeDefinition eDecType = eDec.getTypeDefinition();

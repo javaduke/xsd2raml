@@ -28,12 +28,32 @@
     </xs:complexType>
 
     <xs:complexType name="CountryType">
+        <xs:annotation>
+            <xs:documentation>Country type</xs:documentation>
+            <xs:documentation>Country type - Second line</xs:documentation>
+            <xs:appinfo>
+                <b:recordInfo structure="delimited" field_order="prefix" tag_name="SE" delimiter_type="inherit_field" count_ignore="no" xmlns:b="http://schemas.microsoft.com/BizTalk/2003" />
+            </xs:appinfo>
+        </xs:annotation>
         <xs:all>
             <xs:element name="AbbreviatedCountry" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="CountryName" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="IsoCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="Region" type="tns:RegionType" minOccurs="0" maxOccurs="1"/>
         </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="CalendarEventDetails">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="ID" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Subject" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Location" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="IsMeeting" type="xs:boolean"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="IsRecurring" type="xs:boolean"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="IsException" type="xs:boolean"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="IsReminderSet" type="xs:boolean"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="IsPrivate" type="xs:boolean"/>
+        </xs:sequence>
     </xs:complexType>
 
     <xs:simpleType name="RegionType">
