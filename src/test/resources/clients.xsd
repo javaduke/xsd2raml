@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://crm.sagicorjamaica.com/"
+           elementFormDefault="qualified" targetNamespace="http://crm.sagicorjamaica.com/"
+           version="1.1">
+
+    <xs:include schemaLocation="individual.xsd"/>
+    <xs:include schemaLocation="organization.xsd"/>
+    <xs:include schemaLocation="client-product.xsd"/>
+
+    <xs:element name="Clients">
+        <xs:complexType>
+			<xs:all>
+				<xs:element name="CRMRequestID" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="Individual" type="tns:IndividualType" minOccurs="0"/>
+                <xs:element name="Organization" type="tns:OrganizationType" minOccurs="0" />
+                <!--<xs:element name="ClientProduct" type="tns:ClientProductType" minOccurs="0" maxOccurs="1" />-->
+			</xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="CustomerKindType">
+        <xs:sequence>
+            <xs:choice maxOccurs="unbounded" minOccurs="1">
+                <xs:element name="Individual" type="tns:IndividualType" minOccurs="0"
+                            maxOccurs="unbounded"/>
+                <xs:element name="Organization" type="tns:OrganizationType" minOccurs="0"
+                            maxOccurs="unbounded"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="ClientResponses">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ClientResponse"
+                            type="tns:ClientResponseType" minOccurs="0"
+                            maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="ClientResponseType">
+        <xs:all minOccurs="0">
+            <xs:element type="tns:LobTypeType" name="ResponseLOB" minOccurs="1"/>
+            <xs:element type="xs:boolean" name="IsSuccess" minOccurs="1"/>
+            <xs:element type="xs:string" name="Status" minOccurs="0"/>
+            <xs:element type="xs:string" name="Message" minOccurs="0"/>
+            <xs:element type="xs:string" name="CoreSystemClientId" minOccurs="0"/>
+            <xs:element type="xs:string" name="GUID" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <!--<xs:element name="UpdateClientResponses">-->
+        <!--<xs:complexType>-->
+            <!--<xs:sequence>-->
+                <!--<xs:element name="ClientResponse"-->
+                            <!--type="tns:ClientResponseType" minOccurs="0"-->
+                            <!--maxOccurs="unbounded"/>-->
+            <!--</xs:sequence>-->
+        <!--</xs:complexType>-->
+    <!--</xs:element>-->
+
+    <!--<xs:complexType name="UpdateClientResponseType">-->
+        <!--<xs:sequence>-->
+            <!--<xs:choice maxOccurs="unbounded" minOccurs="1">-->
+                <!--<xs:element type="LobTypeType" name="ResponseLOB" minOccurs="0"/>-->
+                <!--<xs:element type="xs:boolean" name="IsSuccess"/>-->
+                <!--<xs:element type="xs:string" name="Status" minOccurs="0"/>-->
+                <!--<xs:element type="xs:string" name="Message"/>-->
+                <!--<xs:element type="xs:string" name="CoreSystemClientId" minOccurs="0"/>-->
+            <!--</xs:choice>-->
+        <!--</xs:sequence>-->
+    <!--</xs:complexType>-->
+
+    <xs:element name="QueryClients">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice maxOccurs="unbounded" minOccurs="1">
+                    <xs:element name="LOB">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="CAPS-CRM"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="CustomerKind" type="tns:CustomerKindType"
+                                minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="QueryClientResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="QueryClientResponseList"
+                            type="tns:QueryClientResponseListType" minOccurs="0"
+                            maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="QueryClientResponseListType">
+        <xs:sequence>
+            <xs:choice maxOccurs="unbounded" minOccurs="1">
+                <xs:element type="xs:boolean" name="IsSuccess"/>
+                <xs:element name="Code">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Info"/>
+                            <xs:enumeration value="Warning"/>
+                            <xs:enumeration value="Error"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element type="xs:string" name="ClientId"/>
+                <xs:element type="xs:string" name="GUID"/>
+                <xs:element type="xs:string" name="TRN" minOccurs="0"/>
+                <xs:element type="xs:string" name="FirstName" minOccurs="0"/>
+                <xs:element type="xs:string" name="LastName" minOccurs="0"/>
+                <xs:element type="xs:string" name="MiddleName" minOccurs="0"/>
+                <xs:element type="xs:string" name="Gender" minOccurs="0"/>
+                <xs:element type="xs:string" name="CompanyName" minOccurs="0"/>
+                <xs:element type="xs:string" name="Address1" minOccurs="0"/>
+                <xs:element type="xs:string" name="Address2" minOccurs="0"/>
+                <xs:element type="xs:string" name="Address3" minOccurs="0"/>
+                <xs:element type="xs:string" name="CompanyId" minOccurs="0"/>
+                <xs:element type="xs:string" name="Country" minOccurs="0"/>
+                <xs:element type="xs:string" name="Owners" minOccurs="0"/>
+                <xs:element type="xs:string" name="DateOfBirth" minOccurs="0"/>
+                <xs:element type="xs:string" name="Message" minOccurs="0"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="SendSMS">
+        <xs:complexType>
+            <xs:all minOccurs="1">
+                <xs:element type="xs:string" name="PhoneNumber" minOccurs="1"/>
+                <xs:element type="xs:string" name="Message" minOccurs="1"/>
+                <xs:element type="xs:string" name="ReferenceNo" minOccurs="1"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SendSMSResponse">
+        <xs:complexType>
+            <xs:all minOccurs="1">
+                <!-- TODO: Do we need more fields here? -->
+                <xs:element type="xs:boolean" name="Success" minOccurs="1"/>
+                <xs:element type="xs:string" name="ReferenceNo" minOccurs="1"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="ClientProducts">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CRMRequestID" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element name="Individual" type="tns:IndividualType" minOccurs="0"/>
+                    <xs:element name="Organization" type="tns:OrganizationType" minOccurs="0" />
+                    <xs:element name="ClientProduct" type="tns:ClientProductType" minOccurs="0" maxOccurs="1" />
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ClientProductResponses">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ClientProductResponse"
+                            type="tns:ClientProductResponseType" minOccurs="0"
+                            maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:complexType name="ClientProductResponseType">
+        <xs:sequence>
+            <xs:choice maxOccurs="unbounded" minOccurs="1">
+                <xs:element type="xs:boolean" name="IsSuccess"/>
+                <xs:element type="xs:string" name="Status" minOccurs="0"/>
+                <xs:element type="xs:string" name="Message"/>
+                <xs:element type="xs:string" name="CoreSystemAccountId" minOccurs="0"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+
+</xs:schema>

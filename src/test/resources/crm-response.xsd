@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://crm.sagicorjamaica.com/"
+           xmlns:crm="http://crm.sagicorjamaica.com/"
+           xmlns="http://crm.sagicorjamaica.com/"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           attributeFormDefault="qualified" elementFormDefault="qualified" version="1.1">
+
+  <xs:element name="ClientResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="IsSuccess" type="xs:string" minOccurs="0" />
+        <xs:element name="Status" type="xs:string" minOccurs="0" />
+        <xs:element name="Message" type="xs:string" minOccurs="0" />
+        <xs:element name="Core-System-Id" type="xs:string" minOccurs="0" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="NewDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="ClientResponse" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

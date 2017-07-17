@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://crm.sagicorjamaica.com/"
+           elementFormDefault="qualified" targetNamespace="http://crm.sagicorjamaica.com/"
+           version="1.1">
+
+	<xs:simpleType name="JUST_A_TEST">
+		<xs:restriction base="xs:double">
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name="IndustryType">
+        <xs:restriction base="xs:string">
+        	<xs:enumeration value="1010" /> <!-- Sugar Cane -->
+			<xs:enumeration value="1020" /> <!-- Bananas -->
+			<xs:enumeration value="1030" /> <!-- Citrus -->
+			<xs:enumeration value="1040" /> <!-- Other Domestic Food Crops -->
+			<xs:enumeration value="1050" /> <!-- Livestock -->
+			<xs:enumeration value="1060" /> <!-- Fishing -->
+			<xs:enumeration value="1070" /> <!-- Other Agriculture Production -->
+			<xs:enumeration value="1080" /> <!-- Marketing - Export Crops -->
+			<xs:enumeration value="1085" /> <!-- Marketing - Other Crops -->
+			<xs:enumeration value="1090" /> <!-- Land Acquisition - Agricultural -->
+			<xs:enumeration value="1110" /> <!-- Bauxite and Alumina -->
+			<xs:enumeration value="1120" /> <!-- Other - Mining and Quarrying -->
+			<xs:enumeration value="1210" /> <!-- Sugar, Rum and Molasses -->
+			<xs:enumeration value="1220" /> <!-- Food and Other Drink -->
+			<xs:enumeration value="1230" /> <!-- Tobacco & Tobacco Products -->
+			<xs:enumeration value="1240" /> <!-- Paper,Print,Publish & Allied Indust -->
+			<xs:enumeration value="1250" /> <!-- Textile, Leather footwear & -->
+			<xs:enumeration value="1260" /> <!-- Furniture, Fixture & Wood Products -->
+			<xs:enumeration value="1270" /> <!-- Metal Products excl. Metal Furnitur -->
+			<xs:enumeration value="1280" /> <!-- Cement and Clay Products -->
+			<xs:enumeration value="1290" /> <!-- Chemical And Chemical Products -->
+			<xs:enumeration value="1295" /> <!-- Other Manufactures -->
+			<xs:enumeration value="1310" /> <!-- Construction & Land Development -->
+			<xs:enumeration value="1320" /> <!-- Land Development -->
+			<xs:enumeration value="1330" /> <!-- Land Acquisition (Not Agricultural) -->
+			<xs:enumeration value="1410" /> <!-- Transport by Land, Water and Air -->
+			<xs:enumeration value="1420" /> <!-- HarbourFacilitie,Storage&W/housing -->
+			<xs:enumeration value="1430" /> <!-- Communication -->
+			<xs:enumeration value="1510" /> <!-- Electricity, Gas and water -->
+			<xs:enumeration value="1610" /> <!-- Distribution -->
+			<xs:enumeration value="1710" /> <!-- Tourism -->
+			<xs:enumeration value="1810" /> <!-- Entertainment -->
+			<xs:enumeration value="2210" /> <!-- Real Estate Services -->
+			<xs:enumeration value="2220" /> <!-- Professional and Business Services -->
+			<xs:enumeration value="2230" /> <!-- Machinery and Equip Rental Leasing -->
+			<xs:enumeration value="2240" /> <!-- Other Services -->
+			<xs:enumeration value="2310" /> <!-- Personal Non-Business Loans to Indv -->
+			<xs:enumeration value="2410" /> <!-- Loans to Overseas Residents -->
+			<xs:enumeration value="4001" /> <!-- Central Government -->
+			<xs:enumeration value="4002" /> <!-- Local Government -->
+			<xs:enumeration value="4003" /> <!-- Selected Public Entities -->
+			<xs:enumeration value="4004" /> <!-- Other Public Entities -->
+			<xs:enumeration value="5000" /> <!-- FINANCIAL INSTITUTIONS -->
+        </xs:restriction>
+    </xs:simpleType>
+           
+	<xs:simpleType name="SectorType">
+        <xs:restriction base="xs:string">
+			<xs:enumeration value="1001" /> <!-- Individual Non Business -->
+			<xs:enumeration value="1101" /> <!-- Directors -->
+			<xs:enumeration value="1200" /> <!-- Students -->
+			<xs:enumeration value="1210" /> <!-- Senior Citizens -->
+			<xs:enumeration value="1300" /> <!-- Staff -->
+			<xs:enumeration value="1310" /> <!-- Staff-MD/Manager Director -->
+			<xs:enumeration value="1320" /> <!-- Staff-Senior Managers -->
+			<xs:enumeration value="1324" /> <!-- Credit Officers with Limits -->
+			<xs:enumeration value="1325" /> <!-- Staff AVP/ VP -->
+			<xs:enumeration value="1326" /> <!-- Staff Executive -->
+			<xs:enumeration value="1327" /> <!-- Manager of Bank's Assets -->
+			<xs:enumeration value="1328" /> <!-- Branch Manager -->
+			<xs:enumeration value="2500" /> <!-- Overseas Residents -->
+			<xs:enumeration value="3001" /> <!-- Business-Unincorporated -->
+			<xs:enumeration value="3010" /> <!-- Business-Incorporated -->
+			<xs:enumeration value="3300" /> <!-- Partnership -->
+			<xs:enumeration value="3500" /> <!-- Sole Trader -->
+			<xs:enumeration value="3600" /> <!-- Other Customers -->
+			<xs:enumeration value="4001" /> <!-- Central Government -->
+			<xs:enumeration value="4010" /> <!-- Local Government -->
+			<xs:enumeration value="4100" /> <!-- Select Public Entities -->
+			<xs:enumeration value="4200" /> <!-- Other Public Entities -->
+			<xs:enumeration value="5001" /> <!-- Central Banks -->
+			<xs:enumeration value="5100" /> <!-- Specified Financial Institutions -->
+			<xs:enumeration value="5110" /> <!-- Other Financial Institutions -->
+			<xs:enumeration value="5120" /> <!-- Cambio Dealers -->
+			<xs:enumeration value="5310" /> <!-- Development Banks -->
+			<xs:enumeration value="5340" /> <!-- Investment Banks -->
+			<xs:enumeration value="5350" /> <!-- Commercial Banks -->
+			<xs:enumeration value="5370" /> <!-- Primary / Securities Dealer -->
+			<xs:enumeration value="5380" /> <!-- Securities Dealer -->
+			<xs:enumeration value="5400" /> <!-- Trust Companies -->
+			<xs:enumeration value="5500" /> <!-- Pension Funds -->
+			<xs:enumeration value="5600" /> <!-- Credit Unions -->
+			<xs:enumeration value="5700" /> <!-- Insurance Companies -->
+			<xs:enumeration value="5900" /> <!-- Sagicor Group Head Office -->
+			<xs:enumeration value="5910" /> <!-- Affiliated Companies -->
+			<xs:enumeration value="5915" /> <!-- Sagicor Group -->
+			<xs:enumeration value="5999" /> <!-- Sagicor Bank -->
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TitleType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Brig."/>
+            <xs:enumeration value="Capt."/>
+            <xs:enumeration value="Col."/>
+            <xs:enumeration value="Dr."/>
+            <xs:enumeration value="Gen."/>
+            <xs:enumeration value="Hon."/>
+            <xs:enumeration value="Lady"/>
+            <xs:enumeration value="Lord"/>
+            <xs:enumeration value="Lt."/>
+            <xs:enumeration value="Maj."/>
+            <xs:enumeration value="Meissers"/>
+            <xs:enumeration value="Miss"/>
+            <xs:enumeration value="Mr."/>
+            <xs:enumeration value="Mrs."/>
+            <xs:enumeration value="Ms."/>
+            <xs:enumeration value="Prof."/>
+            <xs:enumeration value="Rabbi"/>
+            <xs:enumeration value="Rev."/>
+            <xs:enumeration value="Revd."/>
+            <xs:enumeration value="Rt. Hon."/>
+            <xs:enumeration value="Sgt."/>
+            <xs:enumeration value="Sister"/>
+            <xs:enumeration value="Supt."/>
+        </xs:restriction>
+    </xs:simpleType>
+
+	<xs:simpleType name="RegionType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AD36" />
+			<xs:enumeration value="AE36" />
+			<xs:enumeration value="AF36" />
+			<xs:enumeration value="AG33" />
+			<xs:enumeration value="AG36" />
+			<xs:enumeration value="AI36" />
+			<xs:enumeration value="AL36" />
+			<xs:enumeration value="AM36" />
+			<xs:enumeration value="AN36" />
+			<xs:enumeration value="AO36" />
+			<xs:enumeration value="AQ36" />
+			<xs:enumeration value="AR36" />
+			<xs:enumeration value="AS36" />
+			<xs:enumeration value="AT36" />
+			<xs:enumeration value="AU36" />
+			<xs:enumeration value="AW36" />
+			<xs:enumeration value="AZ36" />
+			<xs:enumeration value="BA36" />
+			<xs:enumeration value="BB31" />
+			<xs:enumeration value="BB33" />
+			<xs:enumeration value="BB36" />
+			<xs:enumeration value="BD36" />
+			<xs:enumeration value="BE36" />
+			<xs:enumeration value="BF36" />
+			<xs:enumeration value="BG36" />
+			<xs:enumeration value="BH36" />
+			<xs:enumeration value="BI36" />
+			<xs:enumeration value="BJ36" />
+			<xs:enumeration value="BL36" />
+			<xs:enumeration value="BM31" />
+			<xs:enumeration value="BM36" />
+			<xs:enumeration value="BN36" />
+			<xs:enumeration value="BO36" />
+			<xs:enumeration value="BR36" />
+			<xs:enumeration value="BS31" />
+			<xs:enumeration value="BS36" />
+			<xs:enumeration value="BT36" />
+			<xs:enumeration value="BV36" />
+			<xs:enumeration value="BW36" />
+			<xs:enumeration value="BY36" />
+			<xs:enumeration value="BZ33" />
+			<xs:enumeration value="BZ36" />
+			<xs:enumeration value="CA31" />
+			<xs:enumeration value="CA33" />
+			<xs:enumeration value="CA35" />
+			<xs:enumeration value="CA36" />
+			<xs:enumeration value="CC36" />
+			<xs:enumeration value="CD36" />
+			<xs:enumeration value="CF36" />
+			<xs:enumeration value="CG36" />
+			<xs:enumeration value="CH34" />
+			<xs:enumeration value="CH36" />
+			<xs:enumeration value="CI36" />
+			<xs:enumeration value="CK36" />
+			<xs:enumeration value="CL36" />
+			<xs:enumeration value="CM36" />
+			<xs:enumeration value="CN33" />
+			<xs:enumeration value="CN35" />
+			<xs:enumeration value="CN36" />
+			<xs:enumeration value="CO36" />
+			<xs:enumeration value="CR36" />
+			<xs:enumeration value="CU36" />
+			<xs:enumeration value="CV36" />
+			<xs:enumeration value="CW36" />
+			<xs:enumeration value="CX36" />
+			<xs:enumeration value="CY36" />
+			<xs:enumeration value="CZ36" />
+			<xs:enumeration value="DE31" />
+			<xs:enumeration value="DE36" />
+			<xs:enumeration value="DJ36" />
+			<xs:enumeration value="DK31" />
+			<xs:enumeration value="DK36" />
+			<xs:enumeration value="DM36" />
+			<xs:enumeration value="DO33" />
+			<xs:enumeration value="DO36" />
+			<xs:enumeration value="DZ36" />
+			<xs:enumeration value="EC33" />
+			<xs:enumeration value="EC36" />
+			<xs:enumeration value="EE36" />
+			<xs:enumeration value="EG36" />
+			<xs:enumeration value="EH36" />
+			<xs:enumeration value="ER36" />
+			<xs:enumeration value="ES36" />
+			<xs:enumeration value="ET36" />
+			<xs:enumeration value="EU31" />
+			<xs:enumeration value="EU36" />
+			<xs:enumeration value="FI36" />
+			<xs:enumeration value="FJ36" />
+			<xs:enumeration value="FK36" />
+			<xs:enumeration value="FM36" />
+			<xs:enumeration value="FO36" />
+			<xs:enumeration value="FR34" />
+			<xs:enumeration value="FR36" />
+			<xs:enumeration value="GA36" />
+			<xs:enumeration value="GB31" />
+			<xs:enumeration value="GB33" />
+			<xs:enumeration value="GB36" />
+			<xs:enumeration value="GD33" />
+			<xs:enumeration value="GD36" />
+			<xs:enumeration value="GE36" />
+			<xs:enumeration value="GF36" />
+			<xs:enumeration value="GG36" />
+			<xs:enumeration value="GH36" />
+			<xs:enumeration value="GI36" />
+			<xs:enumeration value="GL36" />
+			<xs:enumeration value="GM36" />
+			<xs:enumeration value="GN36" />
+			<xs:enumeration value="GO36" />
+			<xs:enumeration value="GP36" />
+			<xs:enumeration value="GQ36" />
+			<xs:enumeration value="GR36" />
+			<xs:enumeration value="GS36" />
+			<xs:enumeration value="GT36" />
+			<xs:enumeration value="GU36" />
+			<xs:enumeration value="GW36" />
+			<xs:enumeration value="GY33" />
+			<xs:enumeration value="GY36" />
+			<xs:enumeration value="HK36" />
+			<xs:enumeration value="HM36" />
+			<xs:enumeration value="HN36" />
+			<xs:enumeration value="HR36" />
+			<xs:enumeration value="HT36" />
+			<xs:enumeration value="HU36" />
+			<xs:enumeration value="ID36" />
+			<xs:enumeration value="IE36" />
+			<xs:enumeration value="IL33" />
+			<xs:enumeration value="IL36" />
+			<xs:enumeration value="IM36" />
+			<xs:enumeration value="IN31" />
+			<xs:enumeration value="IN36" />
+			<xs:enumeration value="IO36" />
+			<xs:enumeration value="IQ36" />
+			<xs:enumeration value="IR36" />
+			<xs:enumeration value="IS31" />
+			<xs:enumeration value="IS36" />
+			<xs:enumeration value="IT36" />
+			<xs:enumeration value="JE36" />
+			<xs:enumeration value="JM01" />
+			<xs:enumeration value="JM30" />
+			<xs:enumeration value="JM31" />
+			<xs:enumeration value="JM33" />
+			<xs:enumeration value="JM35" />
+			<xs:enumeration value="JM36" />
+			<xs:enumeration value="JM37" />
+			<xs:enumeration value="JM50" />
+			<xs:enumeration value="JO36" />
+			<xs:enumeration value="JP36" />
+			<xs:enumeration value="KE36" />
+			<xs:enumeration value="KG36" />
+			<xs:enumeration value="KH36" />
+			<xs:enumeration value="KI36" />
+			<xs:enumeration value="KM36" />
+			<xs:enumeration value="KN33" />
+			<xs:enumeration value="KN36" />
+			<xs:enumeration value="KP36" />
+			<xs:enumeration value="KR36" />
+			<xs:enumeration value="KW36" />
+			<xs:enumeration value="KY31" />
+			<xs:enumeration value="KY36" />
+			<xs:enumeration value="KZ36" />
+			<xs:enumeration value="LA36" />
+			<xs:enumeration value="LB36" />
+			<xs:enumeration value="LC33" />
+			<xs:enumeration value="LC36" />
+			<xs:enumeration value="LI36" />
+			<xs:enumeration value="LK36" />
+			<xs:enumeration value="LR36" />
+			<xs:enumeration value="LS36" />
+			<xs:enumeration value="LT36" />
+			<xs:enumeration value="LU36" />
+			<xs:enumeration value="LV36" />
+			<xs:enumeration value="LY36" />
+			<xs:enumeration value="MA36" />
+			<xs:enumeration value="MC36" />
+			<xs:enumeration value="MD36" />
+			<xs:enumeration value="MF36" />
+			<xs:enumeration value="MG36" />
+			<xs:enumeration value="MH36" />
+			<xs:enumeration value="MK36" />
+			<xs:enumeration value="ML36" />
+			<xs:enumeration value="MM36" />
+			<xs:enumeration value="MN36" />
+			<xs:enumeration value="MO36" />
+			<xs:enumeration value="MP36" />
+			<xs:enumeration value="MQ36" />
+			<xs:enumeration value="MR36" />
+			<xs:enumeration value="MS36" />
+			<xs:enumeration value="MT36" />
+			<xs:enumeration value="MU36" />
+			<xs:enumeration value="MV36" />
+			<xs:enumeration value="MW36" />
+			<xs:enumeration value="MX36" />
+			<xs:enumeration value="MY36" />
+			<xs:enumeration value="MZ36" />
+			<xs:enumeration value="NA36" />
+			<xs:enumeration value="NC36" />
+			<xs:enumeration value="NE36" />
+			<xs:enumeration value="NF36" />
+			<xs:enumeration value="NG36" />
+			<xs:enumeration value="NI36" />
+			<xs:enumeration value="NL36" />
+			<xs:enumeration value="NO31" />
+			<xs:enumeration value="NO36" />
+			<xs:enumeration value="NP36" />
+			<xs:enumeration value="NR36" />
+			<xs:enumeration value="NU36" />
+			<xs:enumeration value="NZ36" />
+			<xs:enumeration value="OM36" />
+			<xs:enumeration value="PA36" />
+			<xs:enumeration value="PE36" />
+			<xs:enumeration value="PF36" />
+			<xs:enumeration value="PG36" />
+			<xs:enumeration value="PH36" />
+			<xs:enumeration value="PK36" />
+			<xs:enumeration value="PL36" />
+			<xs:enumeration value="PM36" />
+			<xs:enumeration value="PN36" />
+			<xs:enumeration value="PR36" />
+			<xs:enumeration value="PT36" />
+			<xs:enumeration value="PW36" />
+			<xs:enumeration value="PY36" />
+			<xs:enumeration value="QA36" />
+			<xs:enumeration value="RE36" />
+			<xs:enumeration value="RO36" />
+			<xs:enumeration value="RS36" />
+			<xs:enumeration value="RU36" />
+			<xs:enumeration value="RW36" />
+			<xs:enumeration value="SA36" />
+			<xs:enumeration value="SB36" />
+			<xs:enumeration value="SC36" />
+			<xs:enumeration value="SD36" />
+			<xs:enumeration value="SE31" />
+			<xs:enumeration value="SE36" />
+			<xs:enumeration value="SG36" />
+			<xs:enumeration value="SH36" />
+			<xs:enumeration value="SI36" />
+			<xs:enumeration value="SJ36" />
+			<xs:enumeration value="SK36" />
+			<xs:enumeration value="SL36" />
+			<xs:enumeration value="SM36" />
+			<xs:enumeration value="SN36" />
+			<xs:enumeration value="SO36" />
+			<xs:enumeration value="SR36" />
+			<xs:enumeration value="SS36" />
+			<xs:enumeration value="ST36" />
+			<xs:enumeration value="SV36" />
+			<xs:enumeration value="SX36" />
+			<xs:enumeration value="SY36" />
+			<xs:enumeration value="SZ36" />
+			<xs:enumeration value="TC36" />
+			<xs:enumeration value="TD36" />
+			<xs:enumeration value="TF36" />
+			<xs:enumeration value="TG36" />
+			<xs:enumeration value="TH36" />
+			<xs:enumeration value="TJ36" />
+			<xs:enumeration value="TK36" />
+			<xs:enumeration value="TM36" />
+			<xs:enumeration value="TN36" />
+			<xs:enumeration value="TO36" />
+			<xs:enumeration value="TP36" />
+			<xs:enumeration value="TR36" />
+			<xs:enumeration value="TT31" />
+			<xs:enumeration value="TT33" />
+			<xs:enumeration value="TT36" />
+			<xs:enumeration value="TV36" />
+			<xs:enumeration value="TW36" />
+			<xs:enumeration value="TZ36" />
+			<xs:enumeration value="UA36" />
+			<xs:enumeration value="UG36" />
+			<xs:enumeration value="UM36" />
+			<xs:enumeration value="US31" />
+			<xs:enumeration value="US33" />
+			<xs:enumeration value="US35" />
+			<xs:enumeration value="US36" />
+			<xs:enumeration value="UY36" />
+			<xs:enumeration value="UZ36" />
+			<xs:enumeration value="VA36" />
+			<xs:enumeration value="VC33" />
+			<xs:enumeration value="VC36" />
+			<xs:enumeration value="VE36" />
+			<xs:enumeration value="VG36" />
+			<xs:enumeration value="VI31" />
+			<xs:enumeration value="VI36" />
+			<xs:enumeration value="VN36" />
+			<xs:enumeration value="VU36" />
+			<xs:enumeration value="WF36" />
+			<xs:enumeration value="WS36" />
+			<xs:enumeration value="XC36" />
+			<xs:enumeration value="XD36" />
+			<xs:enumeration value="XE36" />
+			<xs:enumeration value="XO36" />
+			<xs:enumeration value="XP36" />
+			<xs:enumeration value="YE36" />
+			<xs:enumeration value="YT36" />
+			<xs:enumeration value="YU36" />
+			<xs:enumeration value="ZA36" />
+			<xs:enumeration value="ZM36" />
+			<xs:enumeration value="ZW36" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="LobsType">
+        <xs:sequence>
+            <xs:choice maxOccurs="unbounded" minOccurs="1">
+                <xs:element name="LOB" type="tns:LobType" maxOccurs="unbounded" minOccurs="1"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LobType">
+        <xs:all>
+            <xs:element name="Type" type="tns:LobTypeType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="LogGUID" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:simpleType name="LobTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="T24"/>
+            <xs:enumeration value="PRIME"/>
+            <xs:enumeration value="NETTELLER"/>
+            <xs:enumeration value="USX"/>
+            <xs:enumeration value="TOPAS"/>
+            <xs:enumeration value="SHAREPOINT"/>
+            <xs:enumeration value="CAPSIL"/>
+            <xs:enumeration value="CAPS"/>
+            <xs:enumeration value="GIAS"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="IdNumbersListType">
+        <xs:sequence>
+            <xs:element name="IdNumber" type="tns:Identifier" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AddressListType">
+        <xs:sequence>
+            <xs:element name="Address" type="tns:AddressType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Address -->
+    <xs:complexType name="AddressType">
+        <xs:all>
+            <xs:element name="AddressType" minOccurs="1" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Residential"/>
+                        <xs:enumeration value="Mailing"/>
+                        <xs:enumeration value="Registered"/>
+                        <xs:enumeration value="Employer"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Line1" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Line2" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Line3" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="AddressNumber" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="City" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="State" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Country" type="tns:CountryType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PostalZip" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="UpdateMailingAddress" type="xs:boolean" maxOccurs="1"/>
+            <xs:element name="YearsAtAddress" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="CommListTypes">
+        <xs:sequence>
+            <xs:element name="CommunicationType" type="tns:CommTypeType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommTypeType">
+        <xs:all>
+            <xs:element name="CommType" minOccurs="1" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Proposals"/>
+                        <xs:enumeration value="Alerts"/>
+                        <xs:enumeration value="Campaign"/>
+                        <xs:enumeration value="New Product Update"/>
+                        <xs:enumeration value="Statements"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="CommChannel" minOccurs="1" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Net Teller Channel"/>
+                        <xs:enumeration value="Branch"/>
+                        <xs:enumeration value="Call Centre"/>
+                        <xs:enumeration value="T24 default channel"/>
+                        <xs:enumeration value="E-mail"/>
+                        <xs:enumeration value="Inst Messenger"/>
+                        <xs:enumeration value="Internet"/>
+                        <xs:enumeration value="MOBILE ANDROID BANKING"/>
+                        <xs:enumeration value="MOBILE ANDROID PAYMENT"/>
+                        <xs:enumeration value="MOBILE IPHONE BANKING"/>
+                        <xs:enumeration value="MOBILE IPHONE PAYMENT"/>
+                        <xs:enumeration value="MOBILE J2ME BANKING"/>
+                        <xs:enumeration value="MOBILE J2ME PAYMENT"/>
+                        <xs:enumeration value="MOBILE SMS BANKING"/>
+                        <xs:enumeration value="MOBILE SMS PAYMENT"/>
+                        <xs:enumeration value="MOBILE WINDOWS7 BANKING"/>
+                        <xs:enumeration value="MOBILE WINDOWS7 PAYMENT"/>
+                        <xs:enumeration value="MOBILE XHTML BANKING"/>
+                        <xs:enumeration value="MOBILE XHTML PAYMENT"/>
+                        <xs:enumeration value="MOBILE"/>
+                        <xs:enumeration value="No Channel"/>
+                        <xs:enumeration value="Other Channels"/>
+                        <xs:enumeration value="Personal Meeting"/>
+                        <xs:enumeration value="Phone"/>
+                        <xs:enumeration value="Post"/>
+                        <xs:enumeration value="Skype"/>
+                        <xs:enumeration value="SMS"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <!-- Identifier -->
+    <xs:complexType name="Identifier">
+        <xs:all>
+            <xs:element name="IdType" minOccurs="1" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Cambio Cust."/>
+                        <xs:enumeration value="Drivers Permit"/>
+                        <xs:enumeration value="Drivers License"/>
+                        <xs:enumeration value="Electoral ID"/>
+                        <xs:enumeration value="EMP"/>
+                        <xs:enumeration value="GCT"/>
+                        <xs:enumeration value="Government Issued ID"/>
+                        <xs:enumeration value="Incorp. Cert."/>
+                        <xs:enumeration value="National ID"/>
+                        <xs:enumeration value="NIS"/>
+                        <xs:enumeration value="Passport"/>
+                        <xs:enumeration value="Police ID"/>
+                        <xs:enumeration value="SJG Staff ID"/>
+                        <xs:enumeration value="Social Security Number"/>
+                        <xs:enumeration value="Tax Certificate"/>
+                        <xs:enumeration value="TRN"/>
+                        <xs:enumeration value="VAT"/>
+                        <xs:enumeration value="Work ID"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Number" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="NameOnId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="IdNumberIssueAuthority" minOccurs="1" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Electoral Office of Jamaica"/>
+                        <xs:enumeration value="Employer"/>
+                        <xs:enumeration value="Inland Revenue Dept"/>
+                        <xs:enumeration value="National Insurance Scheme"/>
+                        <xs:enumeration value="Intl Authority"/>
+                        <xs:enumeration value="Office of Registrar of Companies"/>
+                        <xs:enumeration value="Passport &amp; Immigration Office"/>
+                        <xs:enumeration value="Registrar General Dept"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="IdNumberIssueDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="IdNumberExpiryDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="IdIssuerCountry" type="tns:CountryType" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="PhoneListType">
+        <xs:sequence>
+            <xs:element name="Phone" type="tns:PhoneType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Phone -->
+    <xs:complexType name="PhoneType">
+        <xs:all>
+            <xs:element name="PhoneType" minOccurs="1" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Home"/>
+                        <xs:enumeration value="Work"/>
+                        <xs:enumeration value="Mobile"/>
+                        <xs:enumeration value="Fax"/>                        
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="PhoneNumber" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="PhoneCountry" type="tns:CountryType" minOccurs="0" maxOccurs="1"/>
+        </xs:all>
+    </xs:complexType>
+
+    <!-- Country -->
+    <xs:complexType name="CountryType">
+        <xs:all>
+            <xs:element name="AbbreviatedCountry" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CountryName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="IsoCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Region" type="tns:RegionType" minOccurs="0" maxOccurs="1"/>
+        </xs:all>
+    </xs:complexType>
+    
+    <xs:simpleType name="AcctSignType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Anyone"/>
+            <xs:enumeration value="Any Two"/>
+            <xs:enumeration value="All"/>
+            <xs:enumeration value="Primary and any other"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="RiskPrefType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Conservative" />
+            <xs:enumeration value="Moderate" />
+            <xs:enumeration value="Aggressive" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="InvestObjType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Education" />
+            <xs:enumeration value="Retirement" />
+            <xs:enumeration value="Appreciation" />
+            <xs:enumeration value="Income" />
+            <xs:enumeration value="Major Purchase" />
+            <xs:enumeration value="Other" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="EmploymentStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Full Time"/>
+            <xs:enumeration value="Part Time"/>
+			<xs:enumeration value="Permanent"/>
+			<xs:enumeration value="Temporary FullTime"/>
+			<xs:enumeration value="Temporary PartTime"/>
+			<xs:enumeration value="Self Employed"/>
+			<xs:enumeration value="Retired Pensioner"/>
+			<xs:enumeration value="Retired Non-Pensioned"/>
+			<xs:enumeration value="Unemployed"/>
+			<xs:enumeration value="Student"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+    </xs:simpleType>
+	
+	<xs:simpleType name="NextOfKinRelType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="au"/>
+			<xs:enumeration value="bl"/>
+			<xs:enumeration value="br"/>
+			<xs:enumeration value="ch"/>
+			<xs:enumeration value="cl"/>
+			<xs:enumeration value="co"/>
+			<xs:enumeration value="da"/>
+			<xs:enumeration value="dl"/>
+			<xs:enumeration value="ef"/>
+			<xs:enumeration value="es"/>
+			<xs:enumeration value="fa"/>
+			<xs:enumeration value="fi"/>
+			<xs:enumeration value="fl"/>
+			<xs:enumeration value="fr"/>
+			<xs:enumeration value="gc"/>
+			<xs:enumeration value="gd"/>
+			<xs:enumeration value="gf"/>
+			<xs:enumeration value="gm"/>
+			<xs:enumeration value="gn"/>
+			<xs:enumeration value="gp"/>
+			<xs:enumeration value="gs"/>
+			<xs:enumeration value="hu"/>
+			<xs:enumeration value="it"/>
+			<xs:enumeration value="ml"/>
+			<xs:enumeration value="mo"/>
+			<xs:enumeration value="na"/>
+			<xs:enumeration value="nc"/>
+			<xs:enumeration value="ne"/>
+			<xs:enumeration value="ot"/>
+			<xs:enumeration value="pa"/>
+			<xs:enumeration value="sb"/>
+			<xs:enumeration value="sd"/>
+			<xs:enumeration value="sf"/>
+			<xs:enumeration value="si"/>
+			<xs:enumeration value="sl"/>
+			<xs:enumeration value="sm"/>
+			<xs:enumeration value="sn"/>
+			<xs:enumeration value="so"/>
+			<xs:enumeration value="sp"/>
+			<xs:enumeration value="sr"/>
+			<xs:enumeration value="ss"/>
+			<xs:enumeration value="st"/>
+			<xs:enumeration value="tr"/>
+			<xs:enumeration value="uk"/>
+			<xs:enumeration value="un"/>
+			<xs:enumeration value="wi"/>
+			<xs:enumeration value="xs"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="PlanListType">
+        <xs:sequence>
+            <xs:element name="Plan" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>    
+    
+    <xs:simpleType name="SourceOfFundsType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="EFT"/>
+			<xs:enumeration value="ACCOUNT TRANSFER"/>
+			<xs:enumeration value="BUSINESS ACTIVITY"/>
+			<xs:enumeration value="BORROWINGS"/>
+			<xs:enumeration value="COMBINATION DEPOSIT"/>
+			<xs:enumeration value="CASH"/>
+			<xs:enumeration value="CHEQUE"/>
+			<xs:enumeration value="GIFT"/>
+			<xs:enumeration value="INHERITANCE"/>
+			<xs:enumeration value="INVESTMENT"/>
+			<xs:enumeration value="LIQUIDATION OF ASSETS"/>
+			<xs:enumeration value="LOTTERY WINNINGS"/>
+			<xs:enumeration value="MIGRATION"/>
+			<xs:enumeration value="OTHER"/>
+			<xs:enumeration value="RENTAL INCOME"/>
+			<xs:enumeration value="RTGS"/>
+			<xs:enumeration value="SAVINGS"/>
+			<xs:enumeration value="SPOUSE"/>
+			<xs:enumeration value="SALARY DEDUCTION"/>
+			<xs:enumeration value="WIRE TRANSFER"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="RedemptionMethodType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CASH"/>
+            <xs:enumeration value="ACH"/>
+            <xs:enumeration value="SBJ Bank Account"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="CustomerAndRoleListType">
+        <xs:sequence>
+            <xs:element name="CustomerAndRole" type="tns:CustomerAndRoleType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="CustomerAndRoleType">
+        <xs:all>
+            <xs:element name="CrmGuid" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="CustomerRole" type="tns:CustomerRoleType" minOccurs="0" maxOccurs="1"/>
+        </xs:all>
+    </xs:complexType>
+    
+    <xs:simpleType name="CustomerRoleType">
+		<xs:restriction base="xs:string">    
+			<xs:enumeration value="Primary"/>
+	        <xs:enumeration value="Insured"/>
+	        <xs:enumeration value="PolicyOwner"/>
+	        <xs:enumeration value="Joint"/>
+	        <xs:enumeration value="Coown"/>
+	        <xs:enumeration value="Shareholder"/>
+	        <xs:enumeration value="Director"/>
+	    </xs:restriction>                
+	</xs:simpleType>
+
+</xs:schema>

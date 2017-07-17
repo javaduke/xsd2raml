@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://crm.sagicorjamaica.com/">
+  <xs:element xmlns:crm="http://crm.sagicorjamaica.com/" name="QueryCustomer" type="crm:QueryCustomerType"/>
+  <xs:complexType name="LOBType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Type"/>
+      <xs:element type="xs:string" name="LogGUID"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LOBSType">
+    <xs:sequence>
+      <xs:element xmlns:crm="http://crm.sagicorjamaica.com/" type="crm:LOBType" name="LOB"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryCustomerType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="GUID">
+        <xs:annotation>
+          <xs:documentation>Caps Customer query request</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element xmlns:crm="http://crm.sagicorjamaica.com/" type="crm:LOBSType" name="LOBS"/>
+      <xs:element type="xs:string" name="UID"/>
+      <xs:element type="xs:string" name="FirstName"/>
+      <xs:element type="xs:string" name="LastName"/>
+      <xs:element type="xs:string" name="MiddleName"/>
+      <xs:element type="xs:string" name="Title"/>
+      <xs:element type="xs:date" name="DateOfBirth"/>
+      <xs:element type="xs:string" name="Gender"/>
+      <xs:element type="xs:string" name="TRN"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

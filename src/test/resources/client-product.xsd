@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://crm.sagicorjamaica.com/"
+           elementFormDefault="qualified" targetNamespace="http://crm.sagicorjamaica.com/"
+           version="1.1">
+
+	<xs:include schemaLocation="common.xsd"/>
+
+    <xs:element name="ClientProduct" type="tns:ClientProductType"/>
+
+    <xs:complexType name="ClientProductType">
+        <xs:all minOccurs="0">
+			<xs:element name="GUID" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="LOBS" type="tns:LobsType" maxOccurs="1" minOccurs="1"/>
+			<xs:element type="xs:string" name="T24BranchCode" minOccurs="0" maxOccurs="1"/>
+			<xs:element type="xs:string" name="ProductCode" minOccurs="1" maxOccurs="1"/>
+			<xs:element type="xs:string" name="ProductName"/>
+			<xs:element type="xs:string" name="currencyCode" minOccurs="1" maxOccurs="1"/>
+			<xs:element type="xs:date" name="effectiveDate" minOccurs="1" maxOccurs="1"/>
+			<xs:element type="xs:string" name="primaryOfficer"/>
+			<xs:element type="tns:CustomerAndRoleListType" name="CustomersAndRoles"/>
+			<xs:element type="xs:string" name="otherOfficer"/>
+			<xs:element type="tns:IndustryType" name="industryCode"/>
+			<xs:element type="tns:SourceOfFundsType" name="sourceOfFundsCode"/>
+			<xs:element type="xs:string" name="otherParty"/>
+			<xs:element type="xs:string" name="otherPartyRole"/>
+			<xs:element type="xs:string" name="accountReference"/>
+			<xs:element type="xs:float" name="initialDeposit"/>
+			<xs:element type="xs:string" name="taxExempt"/>
+			<xs:element type="tns:DestinationFundsListType" name="destinationFunds"/>
+			<xs:element type="xs:string" name="CustomerPlanCode"/>
+			<xs:element type="xs:string" name="AccountTemplateCode"/>
+			<xs:element type="xs:string" name="CardTemplateCode"/>
+			<xs:element type="xs:string" name="EmbossingCompany"/>
+			<xs:element type="xs:string" name="CardSerialNumber"/>
+			<xs:element type="xs:string" name="AccountSerialNumber"/>			
+			<xs:element type="xs:string" name="AccountNumber" minOccurs="0" maxOccurs="1"/>
+			<xs:element type="xs:float" name="CreditLimit"/>
+			<xs:element type="xs:string" name="AccountPlanCode"/>
+			<xs:element type="xs:string" name="CardPlanCode"/>
+			<xs:element type="tns:AcctSignType" name="AcctSign" minOccurs="0"/>
+			<xs:element name="RedemptionMethod" type="tns:RedemptionMethodType" minOccurs="0"/>
+			<xs:element name="SourceOfFunds" type="tns:SourceOfFundsType" minOccurs="0"/>
+			<xs:element name="InvestObj" type="tns:InvestObjType" minOccurs="0"/>
+			<xs:element name="ExpectedMthDep" type="xs:decimal" minOccurs="0"/>
+            <xs:element name="ExpectedMthWith" type="xs:decimal" minOccurs="0"/>
+            <xs:element name="DealerCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="SalesCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="OfficerCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="RiskPref" type="tns:RiskPrefType" minOccurs="0"/>            
+            <xs:element name="CreatedBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="CreatedOn" type="xs:date" minOccurs="0"/>   
+            <xs:element name="ModifiedBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="ModifiedOn" type="xs:date" minOccurs="0"/>
+            <xs:element name="TaxExemptEffDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="TaxExemptExpDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="TaxExemptAmt" type="xs:decimal" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+    
+    <xs:complexType name="DestinationFundsListType">
+    	<xs:sequence>
+    		<xs:element name="DestinationFund" type="tns:DestinationFundType" minOccurs="1" maxOccurs="unbounded"/>
+    	</xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="DestinationFundType">
+        <xs:all>
+            <xs:element name="FundCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="FundName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Amount" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="FundSplitPercent" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+        </xs:all>
+    </xs:complexType>
+
+</xs:schema>

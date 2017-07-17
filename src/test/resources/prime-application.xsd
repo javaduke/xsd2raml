@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://crm.sagicorjamaica.com/"
+           elementFormDefault="qualified" targetNamespace="http://crm.sagicorjamaica.com/"
+           version="1.1">
+
+    <xs:include schemaLocation="individual.xsd"/>
+	<xs:include schemaLocation="organization.xsd"/>
+	<xs:include schemaLocation="client-product.xsd"/>
+	<xs:include schemaLocation="common.xsd"/>
+
+    
+	 <xs:element name="Clients">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CRMRequestID" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element name="Individual" type="tns:IndividualType" minOccurs="0"/>
+                    <xs:element name="Organization" type="tns:OrganizationType" minOccurs="0"/>
+                    <xs:element name="ClientProduct" type="tns:ClientProductType" minOccurs="0"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -35,15 +35,6 @@ public class Xsd2Raml {
         this.typeDefs = xsModel.getComponents(XSConstants.TYPE_DEFINITION);
     }
 
-    public String getIndent(int level) {
-        StringBuffer indent = new StringBuffer();
-        for (int l = 0; l < level; l++) {
-            for (int i = 0; i < indentSize; i++)
-                indent.append(" ");
-        }
-        return indent.toString();
-    }
-
     public String getRamlHeader() {
         StringBuffer header = new StringBuffer();
         header.append("#%RAML 1.0 Library").append("\n");
@@ -75,7 +66,18 @@ public class Xsd2Raml {
         ramlBuffer.append(getRamlTypes());
         return ramlBuffer.toString();
     }
+
     //=================================================================================================================
+
+    private String getIndent(int level) {
+        StringBuffer indent = new StringBuffer();
+        for (int l = 0; l < level; l++) {
+            for (int i = 0; i < indentSize; i++)
+                indent.append(" ");
+        }
+        return indent.toString();
+    }
+
     private String doConvertSimpleType(XSSimpleType simpleType) {
         return doConvertSimpleType(simpleType, 0);
     }

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://crm.sagicorjamaica.com/"
+           elementFormDefault="qualified" targetNamespace="http://crm.sagicorjamaica.com/"
+           version="1.1">
+
+    <xs:include schemaLocation="common.xsd"/>
+
+    <xs:element name="Organization" type="tns:OrganizationType"/>
+
+    <!-- Organization -->
+    <xs:complexType name="OrganizationType">
+        <xs:all minOccurs="0">
+
+            <xs:element name="GUID" type="xs:string" minOccurs="1" maxOccurs="1"/>
+
+            <xs:element name="LOBS" type="tns:LobsType" maxOccurs="1" minOccurs="1"/>
+            
+            <xs:element name="NoUpdate" type="xs:boolean" minOccurs="1"/>
+            <xs:element name="AddressList" type="tns:AddressListType" minOccurs="0"/>
+            <xs:element name="PhoneList" type="tns:PhoneListType" minOccurs="0"/>
+            <xs:element name="Email" type="xs:string" minOccurs="0"/>
+            <xs:element name="CountryOfIncorporation" type="tns:CountryType" minOccurs="0"/>
+            <xs:element name="TypeOfCompany" type="tns:CompanyTypeType" minOccurs="0"/>
+            <xs:element name="CorpType" type="xs:string" minOccurs="0"/>
+            <xs:element name="Owners" type="xs:string" minOccurs="0"/>
+            <xs:element name="MinNoSignatures" type="xs:int" minOccurs="0"/>
+            <xs:element name="CompanyName" type="xs:string" minOccurs="0"/>
+            <xs:element name="CompanyId" type="xs:string" minOccurs="0"/>
+            <xs:element name="IdNumbers" type="tns:IdNumbersListType" minOccurs="0"/>
+            <xs:element name="OnboardingDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="USShareholder" type="xs:string" minOccurs="0"/>
+            <xs:element name="FatcaStatus" type="xs:string" minOccurs="0"/>
+            <xs:element name="FatcaTIN" type="xs:string" minOccurs="0"/>
+            <xs:element name="LastAssessedDate" type="xs:string" minOccurs="0"/>
+            <xs:element name="FatcaEffectiveDocDate" type="xs:string" minOccurs="0"/>
+            <xs:element name="FatcaFormEffectiveDate" type="xs:string" minOccurs="0"/>
+            <xs:element name="FatcaAccountHolderType" type="xs:string" minOccurs="0"/>
+            <xs:element name="Ownership" type="xs:string" minOccurs="0"/>
+            <xs:element name="OwningBusinessUnit" type="xs:string" minOccurs="0"/>
+            <xs:element name="OwningUser" type="xs:string" minOccurs="0"/>
+            <xs:element name="PrimaryContact" type="xs:string" minOccurs="0"/>
+            <xs:element name="Industry" type="tns:IndustryType" minOccurs="0"/>
+            <xs:element name="Sector" type="xs:string" minOccurs="0"/>
+            <xs:element name="StatusCode" minOccurs="0">
+            	<xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Territory" type="xs:string" minOccurs="0"/>
+            <xs:element name="Currency" type="xs:string" minOccurs="0"/>
+            <xs:element name="CountryOfRegistration" type="xs:string" minOccurs="0"/>
+            <xs:element name="LegalEntityName" type="xs:string" minOccurs="0"/>
+            <xs:element name="DateOfIncorporation" type="xs:date" minOccurs="0"/>
+            <xs:element name="EmploymentStartDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="AmlRiskClassification" type="xs:string" minOccurs="0"/>
+            <xs:element name="FatcaIRSFormReceived" type="xs:string" minOccurs="0"/>
+
+            <xs:element name="AccountOfficer" type="xs:string" minOccurs="0"/>
+
+			<xs:element name="CreatedBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="CreatedOn" type="xs:date" minOccurs="0"/>   
+            <xs:element name="ModifiedBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="ModifiedOn" type="xs:date" minOccurs="0"/>            
+            <xs:element name="Branch" type="xs:string" minOccurs="0"/>
+            <xs:element name="EmbossingName" type="xs:string" minOccurs="0"/>
+            <xs:element name="CustomerTemplateCode" type="xs:string" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+    
+    <xs:simpleType name="CompanyTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Association"/>
+            <xs:enumeration value="Public Limited"/>
+            <xs:enumeration value="Partnership"/>
+            <xs:enumeration value="Private Limited"/>
+            <xs:enumeration value="Society"/>
+            <xs:enumeration value="Religious Charitable"/>
+            <xs:enumeration value="Trustee"/>
+            <xs:enumeration value="Investment"/>
+            <xs:enumeration value="Audited"/>
+            <xs:enumeration value="Incorporated"/>
+            <xs:enumeration value="Other"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

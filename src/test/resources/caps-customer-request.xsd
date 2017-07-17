@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://crm.sagicorjamaica.com/">
+  <xs:element xmlns:crm="http://crm.sagicorjamaica.com/" name="CreateCustomer" type="crm:CreateCustomerType"/>
+  <xs:complexType name="IDType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="ID_Type"/>
+      <xs:element type="xs:string" name="ID_Num"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PhoneType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Home"/>
+      <xs:element type="xs:string" name="Work"/>
+      <xs:element type="xs:string" name="Cell"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CreateCustomerType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="GUID">
+        <xs:annotation>
+          <xs:documentation>Caps Customer Create request</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element type="xs:string" name="ClientID"/>
+      <xs:element type="xs:string" name="FName"/>
+      <xs:element type="xs:string" name="MName"/>
+      <xs:element type="xs:string" name="LName"/>
+      <xs:element type="xs:string" name="Title"/>
+      <xs:element type="xs:string" name="MaidenName"/>
+      <xs:element type="xs:string" name="Gender"/>
+      <xs:element type="xs:string" name="MaritalStatus"/>
+      <xs:element type="xs:date" name="DOB"/>
+      <xs:element type="xs:int" name="TRN"/>
+      <xs:element type="xs:string" name="ResidentialCountry"/>
+      <xs:element type="xs:string" name="TaxResidenceCountry"/>
+      <xs:element xmlns:crm="http://crm.sagicorjamaica.com/" type="crm:IDType" name="ID"/>
+      <xs:element type="xs:string" name="EmailAddress"/>
+      <xs:element type="xs:string" name="Address1"/>
+      <xs:element type="xs:string" name="Address2"/>
+      <xs:element type="xs:string" name="Address3"/>
+      <xs:element xmlns:crm="http://crm.sagicorjamaica.com/" type="crm:PhoneType" name="Phone"/>
+      <xs:element type="xs:string" name="IsUsCitizen"/>
+      <xs:element type="xs:string" name="IsGreenCardHolder"/>
+      <xs:element type="xs:string" name="Occupation"/>
+      <xs:element type="xs:string" name="Employer"/>
+      <xs:element type="xs:string" name="EmployerAddress"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
